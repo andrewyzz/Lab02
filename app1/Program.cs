@@ -1,4 +1,6 @@
 ﻿using entitati;
+using System.Security.Cryptography.X509Certificates;
+ 
 namespace app1
 {
     internal class Program
@@ -6,79 +8,37 @@ namespace app1
         static void Main(string[] args)
         {
             Console.Write("Nr. produse:");
-            uint nrProduse = uint.Parse(Console.ReadLine() ?? string.Empty);
+            int nrProduse = int.Parse(Console.ReadLine() ?? string.Empty);
             Console.Write("Nr. servicii:");
-            uint nrServicii = uint.Parse(Console.ReadLine() ?? string.Empty);
-            Produs[] produse = new Produs[nrProduse];
-            Serviciu[] servicii = new Serviciu[nrServicii];
-            for (int cnt = 0; cnt < nrProduse; cnt++)
+            int nrServicii = int.Parse(Console.ReadLine() ?? string.Empty);
+            for (int i = 0; i < nrProduse; i++)
             {
-                Console.WriteLine("Introdu un produs");
-                Console.Write("Numele:");
-                string? nume = Console.ReadLine();
-                bool exista = false;
-                for(int i = 0; i < cnt; i++)
-                {
-                    if (produse[i] != null && produse[i].Nume == nume)
-                    {
-                        exista = true;
-                        Console.WriteLine("Produsul respectiv exista");
-                        break;
-                    }
-                }
-                if (exista)
-                {
-                    continue;
-                }
-                Console.Write("Codul intern:");
-                string? codintern = Console.ReadLine();
-                Console.Write("Producator:");
-                string? producator = Console.ReadLine();
-                Produs prod = new Produs(producator,codintern,nume,(uint)cnt);
-                produse[cnt] = prod;
+                Console.WriteLine($"Introduceti datele pentru produsul {i + 1}:");
+                string numeProdus = Console.ReadLine();
+                string codInternProdus = Console.ReadLine();
+                string producatorProdus = Console.ReadLine();
+                ProdusAbstractMgr.AddElement(new Produs(numeProdus, codInternProdus, i, producatorProdus));
             }
-            for(int cnt = 0; cnt < nrServicii; cnt++)
+
+            for (int i = 0; i < nrServicii; i++)
             {
-                Console.Write("Nume serviciului:");
-                string nume= Console.ReadLine();
-                bool exista = false;
-                for (int i = 0; i < cnt; i++)
-                {
-                    if (servicii[i] != null && servicii[i].Service == nume)
-                    {
-                        Console.WriteLine("Serviciul exista deja");
-                        exista = true;
-                        break;
-                    }
-                }
-                if (exista)
-                {
-                    continue;
-                }
-                Console.Write("Pret:");
-                int pret = int.Parse(Console.ReadLine());
-                Console.Write("Cod:");
-                int cod = int.Parse(Console.ReadLine());
-                Serviciu serv = new Serviciu(nume, pret,cod, cnt);
-                servicii[cnt] = serv;
+                Console.WriteLine($"Introduceti datele pentru serviciul {i + 1}:");
+                string numeServiciu = Console.ReadLine();
+                string codServiciu = Console.ReadLine();
+                ProdusAbstractMgr.AddElement(new Serviciu(numeServiciu, codServiciu, nrProduse + i));
             }
-            Console.WriteLine("Produsele sunt:");
-            for (int cnt = 0; cnt < nrProduse; cnt++)
+            ProdusAbstractMgr.Write2Console();
+        }
+        public static bool exist(Object[] a, Object b)
+        {
+            for (int i = 0; i < a.Length; i++)
             {
-                Produs prod = produse[cnt];
-                if (prod != null)
+                if (a[i] != null && a[i].Equals(b))
                 {
-                    prod.Afisare();
+                    return true;
                 }
             }
-            for (int cnt = 0; cnt < nrServicii; cnt++)
-            {
-                Serviciu serv = servicii[cnt];
-                if (serv != null)
-                {
-                    serv.Afisare();
-                }
-            }
+            return false;
         }
     }
 }
