@@ -23,7 +23,7 @@ namespace entitati
         }
         public override string Descriere()
         {
-            return "Serviciul: " + base.AltaDescriere();
+            return "Serviciul: " + base.AltaDescriere() + ", ID:"+ this.Id;
         }
         public override bool Equals(object obj)
         {

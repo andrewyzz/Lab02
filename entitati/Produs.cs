@@ -24,7 +24,7 @@ namespace entitati
         }
         public override string Descriere()
         {
-            return "Produsul: " + base.AltaDescriere() + this.Producator;
+            return "Produsul: " + base.AltaDescriere() + ", Producător: " + this.Producator + ", ID: " + this.Id;
         }
         public override bool Equals(object obj)
         {
@@ -36,5 +36,5 @@ namespace entitati
             return Producator == other.Producator && CodIntern == other.CodIntern && Nume == other.Nume;
         }
     }
-    }
+    
 }

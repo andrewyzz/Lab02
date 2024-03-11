@@ -20,7 +20,7 @@ namespace entitati
         public abstract string Descriere();
         public virtual string AltaDescriere()
         {
-            return this.Nume + "[" + this.CodIntern + "] ";
+            return "[" + this.CodIntern + "] " +this.Nume;
         }
         public override string ToString()
         {
