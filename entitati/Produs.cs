@@ -23,7 +23,7 @@ namespace entitati
         }
         public void Afisare()
         {
-            Console.WriteLine("Nume: " + Nume + " Producator: " + Producator + " CodIntern: " + CodIntern + " Id: " + this.Id);
+            Console.WriteLine("Nume: " + Nume + " Producator: " + Producator + " CodIntern: " + CodIntern + " Id: " + Id);
         }
         public override string Descriere()
         {

@@ -19,7 +19,7 @@ namespace entitati
         }
         public void Afisare()
         {
-            Console.WriteLine("Serviciu: " + base.Nume + " CodIntern:"+Cod+ "Id:" + Id);
+            Console.WriteLine("Serviciu: " + Nume + " CodIntern:"+Cod+ "Id:" + Id);
         }
         public override string Descriere()
         {
