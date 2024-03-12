@@ -14,7 +14,7 @@ namespace app1
         protected static int CountElemente { get; set; } = 0;
         public static void AddElement(ProdusAbstract element)
         {
-            if (CountElemente < elemente.Length && !Program.exist(elemente,element))
+            if (CountElemente < elemente.Length && !exist(elemente,element))
             {
                 elemente[CountElemente++] = element;
                 
@@ -32,6 +32,17 @@ namespace app1
             {
                 Console.WriteLine(elemente[i].Descriere());
             }
+        }
+        public static bool exist(Object[] a, Object b)
+        {
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (a[i] != null && a[i].Equals(b))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

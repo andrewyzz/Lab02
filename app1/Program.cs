@@ -17,16 +17,5 @@ namespace app1
             servicii.ReadServiciu(nrServicii);
             ProdusAbstractMgr.Write2Console();
         }
-        public static bool exist(Object[] a, Object b)
-        {
-            for (int i = 0; i < a.Length; i++)
-            {
-                if (a[i] != null && a[i].Equals(b))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
     }
 }

@@ -9,7 +9,7 @@ namespace app1
 {
     internal class ServiciiMgr : ProdusAbstractMgr
     {
-        private Serviciu[] servicii = new Serviciu[100];
+        //private Serviciu[] servicii = new Serviciu[100];
         public int CountServicii { get; set;} = 0;
         public void ReadServiciu()
         {
@@ -17,16 +17,8 @@ namespace app1
             string nume = Console.ReadLine();
             Console.Write("Cod:");
             string cod = Console.ReadLine();
-            
             Serviciu serv = new Serviciu(nume, cod, CountServicii);
-            if (Program.exist(servicii, serv))
-            {
-                Console.WriteLine("Serviciul respectiv exista");
-            }
-            else
-            {
                 AddElement(serv);
-            }
         }
         public void ReadServiciu(int count)
         {
@@ -36,12 +28,13 @@ namespace app1
                 ReadServiciu();
             }
         }
-        /*public void WriteServiciu() 
+        public void WriteServiciu() 
         {
-        for(int i=0;i<CountServicii;i++)
+            for (int i = 0; i < CountElemente; i++)
             {
-                servicii[i].Descriere();
+                if (elemente[i] is Serviciu)    
+                Console.WriteLine(elemente[i].Descriere());
             }
-        }*/
+        }
     }
 }

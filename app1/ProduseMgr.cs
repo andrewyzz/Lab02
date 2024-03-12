@@ -32,12 +32,15 @@ namespace app1
                 ReadProdus();
             }
         }
-        /*public void WriteProdus()
+        public void WriteProdus()
         {
-            for(int i=0;i< CountProduse;i++)
+            for(int i=0;i< CountElemente;i++)
             {
-                produse[i].Descriere();
+                if (elemente[i] is Produs)
+                {
+                    Console.WriteLine(elemente[i].Descriere());
+                }
             }
-        }*/
+        }
     }
 }
