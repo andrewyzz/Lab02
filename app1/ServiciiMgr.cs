@@ -17,6 +17,7 @@ namespace app1
             string nume = Console.ReadLine();
             Console.Write("Cod:");
             string cod = Console.ReadLine();
+            
             Serviciu serv = new Serviciu(nume, cod, CountServicii);
             if (Program.exist(servicii, serv))
             {
@@ -24,22 +25,23 @@ namespace app1
             }
             else
             {
-                servicii[CountServicii++] = serv;
+                AddElement(serv);
             }
         }
         public void ReadServiciu(int count)
         {
             for(int i=0; i < count; i++)
             {
-                Console.WriteLine("Datele pentru serviciul:" + i + 1); ;
+                Console.WriteLine("Datele pentru serviciul:" + (++CountServicii));
+                ReadServiciu();
             }
         }
-        public void WriteServiciu() 
+        /*public void WriteServiciu() 
         {
         for(int i=0;i<CountServicii;i++)
             {
                 servicii[i].Descriere();
             }
-        }
+        }*/
     }
 }

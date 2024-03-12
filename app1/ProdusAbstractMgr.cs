@@ -10,16 +10,18 @@ namespace app1
     abstract class ProdusAbstractMgr
     {
         protected static ProdusAbstract[] elemente = new ProdusAbstract[100];
+
         protected static int CountElemente { get; set; } = 0;
         public static void AddElement(ProdusAbstract element)
         {
-            if (CountElemente < elemente.Length)
+            if (CountElemente < elemente.Length && !Program.exist(elemente,element))
             {
                 elemente[CountElemente++] = element;
+                
             }
             else
             {
-                Console.WriteLine("Mareste size-ul tabloului");
+                Console.WriteLine("Produsul/serviciul exista deja.");
             }
         }
         public static void Write2Console()

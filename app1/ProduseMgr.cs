@@ -9,7 +9,7 @@ namespace app1
 {
     internal class ProduseMgr : ProdusAbstractMgr
     {
-        private Produs[] produse = new Produs[100];
+        //private Produs[] produse = new Produs[100];
         public int CountProduse { get; set; } = 0;
         
         public void ReadProdus()
@@ -21,30 +21,23 @@ namespace app1
             string? codintern = Console.ReadLine();
             Console.Write("Producator:");
             string? producator = Console.ReadLine();
-            Produs prod = new Produs(producator, codintern, CountProduse, nume);
-            if (Program.exist(produse, prod))
-            {
-                Console.WriteLine("Produsul respectiv exista");
-            }
-            else
-            {
-                produse[CountProduse++] = prod;
-            }
+            Produs prod = new Produs(nume, codintern, CountProduse, producator);
+            AddElement(prod);
         }
         public void ReadProdus(int count)
         {
             for(int i = 0; i < count; i++)
             {
-                Console.WriteLine("Datele pentru produsul:" + count + 1);
+                Console.WriteLine("Datele pentru produsul:" + (++CountProduse));
                 ReadProdus();
             }
         }
-        public void WriteProdus()
+        /*public void WriteProdus()
         {
             for(int i=0;i< CountProduse;i++)
             {
                 produse[i].Descriere();
             }
-        }
+        }*/
     }
 }

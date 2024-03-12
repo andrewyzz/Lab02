@@ -22,6 +22,7 @@ namespace entitati
         {
             return "[" + this.CodIntern + "] " +this.Nume;
         }
+
         public override string ToString()
         {
             return "Nume:"+this.Nume +", CodIntern:"+this.CodIntern+", Id:"+this.Id;
