@@ -14,7 +14,7 @@ namespace app1
         
         public void ReadProdus()
         {
-            Console.WriteLine("Introdu un produs");
+            //Console.WriteLine("Introdu un produs");
             Console.Write("Numele:");
             string? nume = Console.ReadLine();
             Console.Write("Codul intern:");
@@ -22,7 +22,10 @@ namespace app1
             Console.Write("Producator:");
             string? producator = Console.ReadLine();
             Produs prod = new Produs(nume, codintern, CountProduse, producator);
-            AddElement(prod);
+            if (!Contains(prod))
+            {
+                AddElement(prod);
+            }
         }
         public void ReadProdus(int count)
         {
@@ -31,6 +34,17 @@ namespace app1
                 Console.WriteLine("Datele pentru produsul:" + (++CountProduse));
                 ReadProdus();
             }
+        }
+        public Produs ReadUnProdus()
+        {
+            Console.WriteLine("Datele pentru produsul:" + (++CountProduse));
+            Console.Write("Numele:");
+            string? nume = Console.ReadLine();
+            Console.Write("Codul intern:");
+            string? codintern = Console.ReadLine();
+            Console.Write("Producator:");
+            string? producator = Console.ReadLine();
+            return new Produs(nume, codintern, CountProduse, producator);
         }
         public void WriteProdus()
         {
@@ -42,5 +56,34 @@ namespace app1
                 }
             }
         }
+        public bool Contains(Produs prod)
+        {
+            for(int i=0;i< CountElemente;i++)
+            {
+                if (elemente[i] is Produs)
+                {
+                    Produs produs = (Produs)elemente[i];
+                    if (produs == prod)
+                        return true;
+                }
+            }
+            return false;
+        }
+        public Produs[] Contains(string? nume)
+        {
+            Produs[] prodNume = new Produs[100];
+            int numeCnt = 0;
+            for (int i = 0; i < CountElemente; i++)
+            {
+                if (elemente[i] is Serviciu)
+                {
+                    Produs produs = (Produs)elemente[i];
+                    if (produs.Nume == nume)
+                        prodNume[numeCnt++] = produs;
+                }
+            }
+            return prodNume;
+        }
+
     }
 }

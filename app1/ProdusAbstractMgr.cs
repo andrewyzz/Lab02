@@ -9,15 +9,14 @@ namespace app1
 {
     abstract class ProdusAbstractMgr
     {
-        protected static ProdusAbstract[] elemente = new ProdusAbstract[100];
+        public static ProdusAbstract[] elemente = new ProdusAbstract[100];
 
-        protected static int CountElemente { get; set; } = 0;
+        public static int CountElemente { get; set; } = 0;
         public static void AddElement(ProdusAbstract element)
         {
-            if (CountElemente < elemente.Length && !exist(elemente,element))
+            if (CountElemente < elemente.Length)
             {
                 elemente[CountElemente++] = element;
-                
             }
             else
             {
@@ -33,12 +32,14 @@ namespace app1
                 Console.WriteLine(elemente[i].Descriere());
             }
         }
-        public static bool exist(Object[] a, Object b)
+        //Unused rn.
+        public static bool exist(ProdusAbstract[] a, ProdusAbstract b)
         {
             for (int i = 0; i < a.Length; i++)
             {
                 if (a[i] != null && a[i].Equals(b))
                 {
+                    Console.WriteLine("EQUALS:" + a[i] + ",B:" + b);
                     return true;
                 }
             }

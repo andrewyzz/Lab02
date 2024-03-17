@@ -8,9 +8,9 @@ namespace entitati
 {
     public abstract class ProdusAbstract
     {
-        public string Nume { get; set; }
-        public string CodIntern {  get; set; }
-        public int Id { get; set; }
+        protected string Nume { get; set; }
+        protected string CodIntern {  get; set; }
+        protected int Id { get; set; }
         public ProdusAbstract(string nume,string codintern, int id)
         {
             Nume = nume;
@@ -27,6 +27,7 @@ namespace entitati
         {
             return "Nume:"+this.Nume +", CodIntern:"+this.CodIntern+", Id:"+this.Id;
         }
+        public abstract bool Equals(Object o);
 
     }
 }

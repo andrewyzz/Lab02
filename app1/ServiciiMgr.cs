@@ -18,7 +18,9 @@ namespace app1
             Console.Write("Cod:");
             string cod = Console.ReadLine();
             Serviciu serv = new Serviciu(nume, cod, CountServicii);
+            if(!Contains(serv)) { 
                 AddElement(serv);
+            }
         }
         public void ReadServiciu(int count)
         {
@@ -28,6 +30,15 @@ namespace app1
                 ReadServiciu();
             }
         }
+        public Serviciu ReadUnServiciu()
+        {
+            Console.WriteLine("Datele pentru serviciul:" + (++CountServicii));
+            Console.Write("Nume serviciului:");
+            string nume = Console.ReadLine();
+            Console.Write("Cod:");
+            string cod = Console.ReadLine();
+            return new Serviciu(nume, cod, CountServicii);
+        }
         public void WriteServiciu() 
         {
             for (int i = 0; i < CountElemente; i++)
@@ -36,5 +47,34 @@ namespace app1
                 Console.WriteLine(elemente[i].Descriere());
             }
         }
+        public bool Contains(Serviciu serv)
+        {
+            for(int i = 0; i < CountElemente; i++)
+            {
+                if (elemente[i] is Serviciu)
+                {
+                    Serviciu serviciu = (Serviciu)elemente[i];
+                    if(serviciu==serv)
+                        return true;
+                }
+            }
+            return false;
+        }
+        public Serviciu[] Contains(string? serv)
+        {
+            Serviciu[] servNume = new Serviciu[100];
+            int numeCnt = 0;
+            for(int i = 0; i < CountElemente; i++)
+            {
+                if (elemente[i] is Serviciu)
+                {
+                    Serviciu serviciu = (Serviciu)elemente[i];
+                    if(serviciu.Nume == serv)
+                        servNume[numeCnt++] = serviciu;
+                }
+            }
+            return servNume;
+        }
+
     }
 }
