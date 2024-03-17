@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<servicii>
+	<Serviciu>
+		<Nume>Instalare OS</Nume>
+		<CodIntern>157235</CodIntern>
+		<Producator>Microsoft</Producator>
+		<Pret>2200</Pret>
+		<Categorie>Tehnologia Informatiei</Categorie>
+	</Serviciu>
+</servicii>

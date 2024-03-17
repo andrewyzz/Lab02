@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,31 +10,50 @@ namespace app1
 {
     abstract class ProdusAbstractMgr
     {
-        protected static ProdusAbstract[] elemente = new ProdusAbstract[100];
-
-        protected static int CountElemente { get; set; } = 0;
-        public static void AddElement(ProdusAbstract element)
+        //public static ProdusAbstract[] elemente = new ProdusAbstract[100];
+        public static List<ProdusAbstract> elemente = new List<ProdusAbstract>();
+        public static int CountElemente { get; set; } = 0;
+        public abstract void AddElement();
+        
+            /*if (!Contains(element))
+            {
+                //elemente[CountElemente++] = element;
+                elemente.Add(element);
+            }*/
+        public List<ProdusAbstract> getList()
         {
-            if (CountElemente < elemente.Length && !exist(elemente,element))
-            {
-                elemente[CountElemente++] = element;
-                
-            }
-            else
-            {
-                Console.WriteLine("Produsul/serviciul exista deja.");
-            }
+            return elemente;
         }
+        public bool canAddToPackage(ProdusAbstract prod)
+        {
+            return false;
+        }
+
         public static void Write2Console()
         {
             Console.WriteLine("elementele din tablou:");
 
-            for (int i = 0; i < CountElemente; i++)
+            foreach(ProdusAbstract elem in elemente)
             {
-                Console.WriteLine(elemente[i].Descriere());
+                Console.WriteLine(elem.ToString());
             }
         }
-        public static bool exist(Object[] a, Object b)
+        public abstract bool Contains(ProdusAbstract proda);
+
+        public ProdusAbstract[] Contains(string? cautat)
+        {
+            ProdusAbstract[] absNume = new ProdusAbstract[100];
+            int numeCnt = 0;
+            for (int i = 0; i < CountElemente; i++)
+            {
+                    ProdusAbstract prod = elemente[i];
+                    if (prod.Nume == cautat)
+                        absNume[numeCnt++] = prod;
+            }
+            return absNume;
+        }
+        //Unused rn.
+        /*public static bool exist(ProdusAbstract[] a, ProdusAbstract b)
         {
             for (int i = 0; i < a.Length; i++)
             {
@@ -43,6 +63,6 @@ namespace app1
                 }
             }
             return false;
-        }
+        }*/
     }
 }

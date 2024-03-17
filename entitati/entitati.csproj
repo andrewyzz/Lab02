@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPackageable.cs" />
+    <Compile Include="Pachet.cs" />
     <Compile Include="Produs.cs" />
     <Compile Include="ProdusAbstract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
