@@ -3,17 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace entitati
 {
+    [XmlInclude(typeof(Produs)), XmlInclude(typeof(Serviciu)), XmlInclude(typeof(Pachet))]
     public abstract class ProdusAbstract : IPackageable
     {
-        public string Nume { get; set; }
-        public string CodIntern {  get; set; }
+        [XmlElement("ID")]
         public int Id { get; set; }
+        [XmlElement("Numele")]
+        public string Nume { get; set; }
+        [XmlElement("CodulIntern")]
+        public string CodIntern { get; set; }
+        [XmlElement("Pretul")]
         public int Pret { get; set; }
+        [XmlElement("Categoria")]
         public string Categorie { get; set; }
-        public ProdusAbstract(string nume,string codintern, int id, int pret,string categorie)
+        protected ProdusAbstract(string nume,string codintern, int id, int pret,string categorie)
         {
             this.Nume = nume;
             this.CodIntern = codintern;

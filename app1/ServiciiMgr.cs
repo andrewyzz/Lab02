@@ -35,6 +35,7 @@ namespace app1
                             //AddElement(serv);
                             elemente.Add(serv);
                         }
+                        serv.save2XML("serviciu");
                         break;
                     }
                 case 2:
@@ -61,10 +62,19 @@ namespace app1
             Console.Write("Cod:");
             string cod = Console.ReadLine();
             Console.Write("Categorie:");
-            string? categorie = Console.ReadLine();
+            string categorie = Console.ReadLine();
             Console.WriteLine("Pret:");
             int pret = int.Parse(Console.ReadLine());
             return new Serviciu(nume, cod, CountServicii++, pret, categorie);
+        }
+        public Serviciu ReadUnServiciu(XmlNode serviciuNode)
+        {
+            string nume = serviciuNode["Nume"].InnerText;
+            string codIntern = serviciuNode["CodIntern"].InnerText;
+            int pret = int.Parse(serviciuNode["Pret"].InnerText);
+            string categorie = serviciuNode["Categorie"].InnerText;
+
+            return new Serviciu(nume, codIntern, CountElemente++, pret, categorie);
         }
         public void WriteServiciu() 
         {
@@ -80,7 +90,7 @@ namespace app1
             XmlDocument doc = new XmlDocument();
             //incarca fisierul
             //doc.Load("...");
-            doc.Load("C:\\Users\\User\\Desktop\\lab7.3\\app1\\Serviciu.xml"); //calea spre fisier
+            doc.Load("C:\\Users\\User\\Desktop\\lab7.5\\app1\\Serviciu.xml"); //calea spre fisier
                                                                                //selecteaza nodurile
             XmlNodeList lista_noduri = doc.SelectNodes("/servicii/Serviciu");
             foreach (XmlNode nod in lista_noduri)
@@ -97,16 +107,6 @@ namespace app1
                 elemente.Add(new Serviciu(nume, codIntern, CountServicii++, pret, categorie));
             }
 
-        }
-        public override bool Contains(ProdusAbstract proda)
-        {
-            for (int i = 0; i < CountElemente; i++)
-            {
-                ProdusAbstract prod = elemente[i];
-                if (proda == prod)
-                    return true;
-            }
-            return false;
         }
 
     }

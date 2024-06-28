@@ -11,16 +11,14 @@ namespace app1
             int nrProduse = int.Parse(Console.ReadLine() ?? string.Empty);
             Console.Write("Nr. servicii:");
             int nrServicii = int.Parse(Console.ReadLine() ?? string.Empty);
+            Console.WriteLine("Nr. Pachete:");
+            int nrPachete = int.Parse(Console.ReadLine() ?? string.Empty);
             ProduseMgr produse = new ProduseMgr();
             ServiciiMgr servicii = new ServiciiMgr();
             PachetMgr pachete = new PachetMgr();
-            produse.AddElement();
-            servicii.AddElement();
-            //pachete.AddElement();
-            //Serviciu serv = servicii.ReadUnServiciu();
-            //Produs produs = produse.ReadUnProdus();
-            //serv.save2XML("serviciu");
-            //produs.save2XML("produs");
+            produse.AddElement(nrProduse);
+            servicii.AddElement(nrServicii);
+            pachete.AddElement(nrPachete);
             ProdusAbstractMgr.Write2Console();
         }
     }

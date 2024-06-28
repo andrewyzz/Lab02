@@ -1,10 +1,66 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<pachete>
+﻿<pachete>
 	<Pachet>
-		<Nume>Calculator</Nume>
-		<CodIntern>157235</CodIntern>
-		<Producator>USA</Producator>
-		<Pret>2200</Pret>
-		<Categorie>Tehnologia Informatiei</Categorie>
+		<Nume>Pachet1</Nume>
+		<CodIntern>001</CodIntern>
+		<Producator>Producator1</Producator>
+		<Pret>1000</Pret>
+		<Categorie>Categorie1</Categorie>
+		<Produse>
+			<Produs>
+				<Nume>Produs1</Nume>
+				<CodIntern>P001</CodIntern>
+				<Producator>ProdusProducator1</Producator>
+				<Pret>100</Pret>
+				<Categorie>ProdusCategorie1</Categorie>
+			</Produs>
+			<Produs>
+				<Nume>Produs2</Nume>
+				<CodIntern>P002</CodIntern>
+				<Producator>ProdusProducator2</Producator>
+				<Pret>200</Pret>
+				<Categorie>ProdusCategorie2</Categorie>
+			</Produs>
+		</Produse>
+		<Servicii>
+			<Serviciu>
+				<Nume>Serviciu1</Nume>
+				<CodIntern>S001</CodIntern>
+				<Furnizor>ServiciuFurnizor1</Furnizor>
+				<Pret>300</Pret>
+				<Categorie>ServiciuCategorie1</Categorie>
+			</Serviciu>
+			<Serviciu>
+				<Nume>Serviciu2</Nume>
+				<CodIntern>S002</CodIntern>
+				<Furnizor>ServiciuFurnizor2</Furnizor>
+				<Pret>400</Pret>
+				<Categorie>ServiciuCategorie2</Categorie>
+			</Serviciu>
+		</Servicii>
+	</Pachet>
+	<Pachet>
+		<Nume>Pachet2</Nume>
+		<CodIntern>002</CodIntern>
+		<Producator>Producator2</Producator>
+		<Pret>1500</Pret>
+		<Categorie>Categorie2</Categorie>
+		<Produse>
+			<Produs>
+				<Nume>Produs3</Nume>
+				<CodIntern>P003</CodIntern>
+				<Producator>ProdusProducator3</Producator>
+				<Pret>300</Pret>
+				<Categorie>ProdusCategorie3</Categorie>
+			</Produs>
+		</Produse>
+		<Servicii>
+			<Serviciu>
+				<Nume>Serviciu3</Nume>
+				<CodIntern>S003</CodIntern>
+				<Furnizor>ServiciuFurnizor3</Furnizor>
+				<Pret>500</Pret>
+				<Categorie>ServiciuCategorie3</Categorie>
+			</Serviciu>
+		</Servicii>
 	</Pachet>
 </pachete>

@@ -36,6 +36,7 @@ namespace app1
                             //AddElement(prod);
                             elemente.Add(prod);
                         }
+                        prod.save2XML("produs");
                         break;
                     }
                 case 2:
@@ -44,6 +45,13 @@ namespace app1
                 default:
                     InitListafromXML();
                     break;
+            }
+        }
+        public void AddElement(int nr)
+        {
+            for (int i = 0; i < nr; i++)
+            {
+                this.AddElement();
             }
         }
         public void ReadProdus(int count)
@@ -86,7 +94,7 @@ namespace app1
             XmlDocument doc = new XmlDocument();
             //incarca fisierul
             //doc.Load("...");
-            doc.Load("C:\\Users\\User\\Desktop\\lab7.3\\app1\\Produs.xml"); //calea spre fisier
+            doc.Load("C:\\Users\\User\\Desktop\\lab7.5\\app1\\Produs.xml"); //calea spre fisier
                                         //selecteaza nodurile
             XmlNodeList lista_noduri = doc.SelectNodes("/produse/Produs");
             foreach (XmlNode nod in lista_noduri)
@@ -103,32 +111,5 @@ namespace app1
                 elemente.Add(new Produs(nume, codIntern, CountProduse, pret, categorie, producator));
             }
         }
-        public override bool Contains(ProdusAbstract proda)
-        {
-            for (int i = 0; i < CountElemente; i++)
-            {
-                ProdusAbstract prod = elemente[i];
-                if (proda == prod)
-                    return true;
-            }
-            return false;
-        }
-
-        /*public Produs[] Contains(string? nume)
-        {
-            Produs[] prodNume = new Produs[100];
-            int numeCnt = 0;
-            for (int i = 0; i < CountElemente; i++)
-            {
-                if (elemente[i] is Serviciu)
-                {
-                    Produs produs = (Produs)elemente[i];
-                    if (produs.Nume == nume)
-                        prodNume[numeCnt++] = produs;
-                }
-            }
-            return prodNume;
-        }*/
-
     }
 }

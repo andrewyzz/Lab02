@@ -5,13 +5,14 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace app1
 {
     abstract class ProdusAbstractMgr
     {
         //public static ProdusAbstract[] elemente = new ProdusAbstract[100];
-        public static List<ProdusAbstract> elemente = new List<ProdusAbstract>();
+        protected static List<ProdusAbstract> elemente = new List<ProdusAbstract>();
         public static int CountElemente { get; set; } = 0;
         public abstract void AddElement();
         
@@ -28,6 +29,17 @@ namespace app1
         {
             return false;
         }
+        public void save2XML(string fileName)
+        {
+            Type[] prodAbstractTypes = new Type[3];
+            prodAbstractTypes[0] = typeof(Serviciu);
+            prodAbstractTypes[1] = typeof(Produs);
+            prodAbstractTypes[2] = typeof(Pachet);
+            XmlSerializer xs = new XmlSerializer(typeof(List<ProdusAbstract>), prodAbstractTypes);
+            StreamWriter sw = new StreamWriter(fileName + ".xml");
+            xs.Serialize(sw, elemente);
+            sw.Close();
+        }
 
         public static void Write2Console()
         {
@@ -38,7 +50,6 @@ namespace app1
                 Console.WriteLine(elem.ToString());
             }
         }
-        public abstract bool Contains(ProdusAbstract proda);
 
         public ProdusAbstract[] Contains(string? cautat)
         {
@@ -52,17 +63,5 @@ namespace app1
             }
             return absNume;
         }
-        //Unused rn.
-        /*public static bool exist(ProdusAbstract[] a, ProdusAbstract b)
-        {
-            for (int i = 0; i < a.Length; i++)
-            {
-                if (a[i] != null && a[i].Equals(b))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }*/
     }
 }

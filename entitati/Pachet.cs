@@ -1,18 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
+using System.Xml;
 
 namespace entitati
 {
+    [XmlType("Pachet")]
     public class Pachet : ProdusAbstract
     {
-        private  List<IPackageable> elem_pachet = new List<IPackageable>();
+        [XmlArray("Elemente")]
+        public List<ProdusAbstract> elem_pachet = new List<ProdusAbstract>();
 
         public Pachet(string nume, string codintern, int id, int pret, string categorie) : base(nume, codintern, id, pret, categorie)
         { 
-          
+        }
+        public Pachet()
+        {
+
         }
         public void PachetDescriere()
         {
@@ -25,21 +33,29 @@ namespace entitati
         {
             return base.AltaDescriere();
         }
-        public override string AltaDescriere()
+        
+        public override string ToString()
         {
-            return base.AltaDescriere();
+            StringBuilder sb = new StringBuilder();
+            Console.WriteLine(this.AltaDescriere());
+            foreach (var element in elem_pachet)
+            {
+                sb.AppendLine(element.ToString());
+            }
+
+            return sb.ToString();
         }
         public void AddElement (ProdusAbstract e)
         {
-            if (canAddToPackage((Pachet)e))
+            if (canAddToPackage(e))
             {
                 elem_pachet.Add(e);
             }
         }
-        public  bool canAddToPackage(Pachet pachet)
+        public  bool canAddToPackage(ProdusAbstract pachet)
         {
             int prodcount = 0;
-            foreach(Pachet pack in elem_pachet)
+            foreach(ProdusAbstract pack in elem_pachet)
             {
                 if(pack is Produs)
                 {
@@ -52,6 +68,24 @@ namespace entitati
             }
             return true;
         }
-        
+        public void save2XML(string fileName)
+        {
+            XmlSerializer xs = new XmlSerializer(typeof(Pachet));
+            StreamWriter sw = new StreamWriter(fileName + ".xml");
+            xs.Serialize(sw, this);
+            sw.Close();
+        }
+        public Pachet loadFromXML(string fileName)
+        {
+            XmlSerializer xs = new XmlSerializer(typeof(Pachet));
+            FileStream fs = new FileStream(fileName + ".xml",
+            FileMode.Open);
+            XmlReader reader = new XmlTextReader(fs);
+            //deserializare cu crearea de obiect => constructor fara param
+            Pachet pachet = (Pachet)xs.Deserialize(reader);
+            fs.Close();
+            return pachet;
+        }
+
     }
 }

@@ -9,6 +9,7 @@ using System.Xml.Serialization;
 
 namespace entitati
 {
+    [XmlType("Serviciu")]
     public class Serviciu : ProdusAbstract
     {
 
@@ -32,23 +33,17 @@ namespace entitati
             xs.Serialize(sw, this);
             sw.Close();
         }
+
         public Serviciu loadFromXML(string fileName)
         {
             XmlSerializer xs = new XmlSerializer(typeof(Serviciu));
-            FileStream fs = new FileStream(fileName + ".xml",
-            FileMode.Open);
+            FileStream fs = new FileStream(fileName + ".xml", FileMode.Open);
             XmlReader reader = new XmlTextReader(fs);
             //deserializare cu crearea de obiect => constructor fara param
             Serviciu serviciu = (Serviciu)xs.Deserialize(reader);
             fs.Close();
             return serviciu;
         }
-        /*public override bool Equals(object obj)
-        {
-            if(obj == null || GetType() != obj.GetType()) return false;
-            Serviciu srv = obj as Serviciu;
-            return base.Nume == srv.Nume && base.CodIntern == srv.CodIntern;
-        }*/
         public override bool Equals(ProdusAbstract obj)
         {
             if (obj == null)

@@ -10,9 +10,9 @@ using System.Xml.Serialization;
 
 namespace entitati
 {
+    [XmlType("Produs")]
     public class Produs : ProdusAbstract
     {
-        public string Producator { get; set; }
         
 
         public Produs(string Nume, string CodIntern, int id, int pret, string categorie, string Producator) : base(Nume,CodIntern,id,pret,categorie)
@@ -21,6 +21,7 @@ namespace entitati
             
         }
         public Produs() { }
+        public string Producator { get; set; }
         public void Afisare()
         {
             Console.WriteLine("Nume: " + Nume + " Producator: " + Producator + " CodIntern: " + CodIntern + " Id: " + Id);
@@ -54,17 +55,6 @@ namespace entitati
             StreamWriter sw = new StreamWriter(fileName + ".xml");
             xs.Serialize(sw, this);
             sw.Close();
-        }
-        public Produs loadFromXML(string fileName)
-        {
-            XmlSerializer xs = new XmlSerializer(typeof(Produs));
-            FileStream fs = new FileStream(fileName + ".xml",
-            FileMode.Open);
-            XmlReader reader = new XmlTextReader(fs);
-            //deserializare cu crearea de obiect => constructor fara param
-            Produs produs = (Produs)xs.Deserialize(reader);
-            fs.Close();
-            return produs;
         }
         public static bool operator ==(Produs p1, Produs p2)
             => ((p1.Nume == p2.Nume) && (p1.CodIntern == p2.CodIntern) && (p1.Producator == p2.Producator));
