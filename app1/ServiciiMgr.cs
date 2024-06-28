@@ -86,27 +86,28 @@ namespace app1
         }
         public void InitListafromXML()
         {
-            //initializare lista dintr-un fisier XML
+            
             XmlDocument doc = new XmlDocument();
-            //incarca fisierul
-            //doc.Load("...");
-            doc.Load("C:\\Users\\User\\Desktop\\lab7.5\\app1\\Serviciu.xml"); //calea spre fisier
-                                                                               //selecteaza nodurile
-            XmlNodeList lista_noduri = doc.SelectNodes("/servicii/Serviciu");
-            foreach (XmlNode nod in lista_noduri)
+            try
             {
-                //itereaza si selecteaza simpurile fiecarui nod si
-                //informatia continuta in cadrul proprietatii InnerText
-                string nume = nod["Nume"].InnerText;
-                string codIntern = nod["CodIntern"].InnerText;
-                string producator = nod["Producator"].InnerText;
-                int pret = int.Parse(nod["Pret"].InnerText);
-                string categorie = nod["Categorie"].InnerText;
+                doc.Load("C:\\Users\\User\\Desktop\\lab7.5\\app1\\Serviciu.xml");
 
-                //adauga in lista produse
-                elemente.Add(new Serviciu(nume, codIntern, CountServicii++, pret, categorie));
+                XmlNodeList lista_noduri = doc.SelectNodes("/servicii/Serviciu");
+                foreach (XmlNode nod in lista_noduri)
+                {
+                    string nume = nod["Nume"].InnerText;
+                    string codIntern = nod["CodIntern"].InnerText;
+                    string producator = nod["Producator"].InnerText;
+                    int pret = int.Parse(nod["Pret"].InnerText);
+                    string categorie = nod["Categorie"].InnerText;
+
+                    elemente.Add(new Serviciu(nume, codIntern, CountServicii++, pret, categorie));
+                }
+            } catch (System.IO.DirectoryNotFoundException ex)
+            {
+                Console.WriteLine("Wrong directory in path file.");
             }
-
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
 
     }

@@ -11,7 +11,7 @@ namespace app1
             int nrProduse = int.Parse(Console.ReadLine() ?? string.Empty);
             Console.Write("Nr. servicii:");
             int nrServicii = int.Parse(Console.ReadLine() ?? string.Empty);
-            Console.WriteLine("Nr. Pachete:");
+            Console.Write("Nr. Pachete:");
             int nrPachete = int.Parse(Console.ReadLine() ?? string.Empty);
             ProduseMgr produse = new ProduseMgr();
             ServiciiMgr servicii = new ServiciiMgr();

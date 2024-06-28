@@ -84,46 +84,55 @@ namespace app1
         public void InitListafromXML()
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load("C:\\Users\\User\\Desktop\\lab7.5\\app1\\Pachet.xml");
-            XmlNodeList lista_noduri = doc.SelectNodes("/pachete/Pachet");
-            foreach (XmlNode nodPachet in lista_noduri)
+            try
             {
-                string nume = nodPachet["Nume"].InnerText;
-                string codIntern = nodPachet["CodIntern"].InnerText;
-                string producator = nodPachet["Producator"].InnerText;
-                int pret = int.Parse(nodPachet["Pret"].InnerText);
-                string categorie = nodPachet["Categorie"].InnerText;
+                doc.Load("C:\\Users\\User\\Desktop\\lab7.5\\app1\\Pachet.xml");
 
-                Pachet pachet = new Pachet(nume, codIntern, CountPachete++, pret, categorie);
-
-                XmlNodeList listaNoduriProduse = nodPachet.SelectNodes("Produse/Produs");
-                foreach (XmlNode nodProdus in listaNoduriProduse)
+                XmlNodeList lista_noduri = doc.SelectNodes("/pachete/Pachet");
+                foreach (XmlNode nodPachet in lista_noduri)
                 {
-                    string numeProdus = nodProdus["Nume"].InnerText;
-                    string codInternProdus = nodProdus["CodIntern"].InnerText;
-                    string producatorProdus = nodProdus["Producator"].InnerText;
-                    int pretProdus = int.Parse(nodProdus["Pret"].InnerText);
-                    string categorieProdus = nodProdus["Categorie"].InnerText;
+                    string nume = nodPachet["Nume"].InnerText;
+                    string codIntern = nodPachet["CodIntern"].InnerText;
+                    string producator = nodPachet["Producator"].InnerText;
+                    int pret = int.Parse(nodPachet["Pret"].InnerText);
+                    string categorie = nodPachet["Categorie"].InnerText;
 
-                    Produs produs = new Produs(numeProdus, codInternProdus,CountElemente++ ,pretProdus, categorieProdus,producatorProdus);
-                    pachet.AddElement(produs);
+                    Pachet pachet = new Pachet(nume, codIntern, CountPachete++, pret, categorie);
+
+                    XmlNodeList listaNoduriProduse = nodPachet.SelectNodes("Produse/Produs");
+                    foreach (XmlNode nodProdus in listaNoduriProduse)
+                    {
+                        string numeProdus = nodProdus["Nume"].InnerText;
+                        string codInternProdus = nodProdus["CodIntern"].InnerText;
+                        string producatorProdus = nodProdus["Producator"].InnerText;
+                        int pretProdus = int.Parse(nodProdus["Pret"].InnerText);
+                        string categorieProdus = nodProdus["Categorie"].InnerText;
+
+                        Produs produs = new Produs(numeProdus, codInternProdus, CountElemente++, pretProdus, categorieProdus, producatorProdus);
+                        pachet.AddElement(produs);
+                    }
+
+                    XmlNodeList listaNoduriServicii = nodPachet.SelectNodes("Servicii/Serviciu");
+                    foreach (XmlNode nodServiciu in listaNoduriServicii)
+                    {
+                        string numeServiciu = nodServiciu["Nume"].InnerText;
+                        string codInternServiciu = nodServiciu["CodIntern"].InnerText;
+                        string furnizorServiciu = nodServiciu["Furnizor"].InnerText;
+                        int pretServiciu = int.Parse(nodServiciu["Pret"].InnerText);
+                        string categorieServiciu = nodServiciu["Categorie"].InnerText;
+
+                        Serviciu serviciu = new Serviciu(numeServiciu, codInternServiciu, CountElemente++, pretServiciu, categorieServiciu);
+                        pachet.AddElement(serviciu);
+                    }
+
+                    elemente.Add(pachet);
                 }
-
-                XmlNodeList listaNoduriServicii = nodPachet.SelectNodes("Servicii/Serviciu");
-                foreach (XmlNode nodServiciu in listaNoduriServicii)
-                {
-                    string numeServiciu = nodServiciu["Nume"].InnerText;
-                    string codInternServiciu = nodServiciu["CodIntern"].InnerText;
-                    string furnizorServiciu = nodServiciu["Furnizor"].InnerText;
-                    int pretServiciu = int.Parse(nodServiciu["Pret"].InnerText);
-                    string categorieServiciu = nodServiciu["Categorie"].InnerText;
-
-                    Serviciu serviciu = new Serviciu(numeServiciu, codInternServiciu, CountElemente++, pretServiciu, categorieServiciu);
-                    pachet.AddElement(serviciu);
-                }
-
-                elemente.Add(pachet);
             }
+            catch (System.IO.DirectoryNotFoundException ex)
+            {
+                Console.WriteLine("Wrong directory in path file.");
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
     }
 }
